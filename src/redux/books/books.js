@@ -1,96 +1,37 @@
-const URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/ewYk4YjZVq8pYtMAfktj/books';
-const ADD = 'BOOK_ADDED';
-const DEL = 'BOOK_REMOVED';
-const READ = 'BOOKS_RETRIEVED';
+import api from '../../api/api';
+// Actions
+const ADD_BOOK = 'ADD_BOOK';
+const REMOVE_BOOK = 'REMOVE_BOOK';
+const GET_BOOKS = 'GET_BOOKS';
 
-// Action creators
-export const addBook = ({
-  // eslint-disable-next-line camelcase
-  item_id, title, author, category,
-}) => ({
-  type: ADD,
-  item_id,
-  title,
-  author,
-  category,
-});
-
-// eslint-disable-next-line camelcase
-export const removeBook = (item_id) => ({
-  type: DEL,
-  item_id,
-});
-
-export const getActionData = ({
-  // eslint-disable-next-line camelcase
-  item_id, title, author, category,
-}) => ({
-  item_id, title, author, category,
-});
-
-export const readBooks = (books) => ({
-  type: READ,
-  books,
-});
-
-const bookReducer = (state = [], action) => {
+// Reducer
+const booksReducer = (state = [], action) => {
   switch (action.type) {
-    case ADD:
-      return [
-        ...state,
-        getActionData(action),
-      ];
-    case DEL:
-      return state.filter((book) => book.item_id !== action.item_id);
-
-    case READ:
+    case ADD_BOOK:
+      return [...state, action.book];
+    case REMOVE_BOOK:
+      return [...state.filter(({ id }) => id !== action.bookId)];
+    case GET_BOOKS:
       return action.books;
-
     default:
       return state;
   }
 };
 
-export const fetchBooks = () => async (dispatch) => {
-  await fetch(URL)
-    .then((res) => res.json())
-    .then((books) => {
-      const BooksList = [];
-      Object.keys(books).forEach((key) => {
-        BooksList.push({
-          item_id: key,
-          title: books[key][0].title,
-          author: books[key][0].author,
-          category: books[key][0].category,
-        });
-      });
-      dispatch(readBooks(BooksList));
-    });
+// Action Creators
+export const addBook = (book) => async (dispatch) => {
+  api.addNewBook(book);
+  dispatch({ type: ADD_BOOK, book });
 };
 
-export const postBook = (book) => async (dispatch) => {
-  await fetch(URL, {
-    method: 'POST',
-    body: JSON.stringify(book),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-    },
-  })
-    .then(() => {
-      dispatch(addBook(book));
-    });
+export const removeBook = (bookId) => async (dispatch) => {
+  api.deleteBook(bookId);
+  dispatch({ type: REMOVE_BOOK, bookId });
 };
 
-export const deleteBook = (id) => async (dispatch) => {
-  await fetch(`${URL}/${id}`, {
-    method: 'DELETE',
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-    },
-  })
-    .then(() => {
-      dispatch(removeBook(id));
-    });
+export const getBooks = () => async (dispatch) => {
+  const books = await api.fetchBooks();
+  dispatch({ type: GET_BOOKS, books });
 };
 
-export default bookReducer;
+export default booksReducer;

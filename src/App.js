@@ -1,31 +1,20 @@
-import React, { useEffect } from 'react';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import Categories from './components/Categories';
-import { fetchBooks } from './redux/books/books';
-import Books from './components/Books';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Books from './pages/Books';
+import Categories from './pages/Categories';
+import './App.css';
 
-const App = () => {
-  const state = useSelector((state) => state);
-  const dispatch = useDispatch();
-  useEffect(() => async () => {
-    await dispatch(fetchBooks());
-  }, []);
-
+function App() {
   return (
     <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Books BooksList={state.books} />} />
-          <Route path="/Categories" element={<Categories Categories={state.categories} />} />
-        </Routes>
-      </Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Books />} />
+        <Route path="/categories" element={<Categories />} />
+      </Routes>
     </div>
   );
-};
+}
 
 export default App;
