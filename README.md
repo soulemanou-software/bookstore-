@@ -7,7 +7,9 @@
 
 ## Built With
 
-- html, css, javascript
+- html
+- css
+- javascript
 - React
 - Redux
 
@@ -34,10 +36,13 @@ npm should be insalled in your local machine
 - step 5: open your browser and type localhost:3000
 - step 6: enjoy the app
 ### Install
-npm install
-npm start
-npm run build
-npm run eject
+- > npm install
+- > npm install -g @lhci/cli@0.7.x
+- > npm install --save-dev hint@6.x
+- > npm install --save-dev stylelint@13.x stylelint-scss@3.x stylelint-config-standard@21.x stylelint-csstree-validator@1.x
+- > npm run build
+- > npm start
+
 ### Usage
 use the app to add, track status, update and delete your preferred book choice
 ### Run tests
