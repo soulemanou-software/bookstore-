@@ -13,7 +13,7 @@
 
 ## Live Demo (if available)
 
-[caming soon...](https://livedemo.com)
+[Live demo](https://deploy-preview-5--bookstore-2112.netlify.app/)
 
 
 ## Getting Started
