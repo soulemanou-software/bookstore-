@@ -46,7 +46,12 @@ npm should be insalled in your local machine
 ### Usage
 use the app to add, track status, update and delete your preferred book choice
 ### Run tests
-to run tests, run npm test
+- > npx hint .
+- > npx stylelint "\*_/_.{css,scss}"
+- > npx eslint .
+- > Install jest using npm i --save-dev jest
+- > Install jsDom using npm install --save-dev jest-environment-jsdom-global jest-environment-jsdom
+- > run your test using npm run test
 ### Deployment
 
 Deployed to GITHUB-PAGES
