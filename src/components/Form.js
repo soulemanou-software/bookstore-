@@ -31,14 +31,14 @@ const Form = () => {
   };
 
   return (
-    <>
+    <section className="form-book">
       <h2>Add New Book</h2>
       <form onSubmit={submit}>
         <input type="text" id="title" name="title" onChange={readUserInput} placeholder="add title.." />
         <input type="text" id="author" name="author" onChange={readUserInput} placeholder="add author.." />
         <button type="submit">ADD BOOK</button>
       </form>
-    </>
+    </section>
   );
 };
 

@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import React from 'react';
+=======
+import './index.css';
+import React, { useEffect } from 'react';
+>>>>>>> 8f7397426e6a5f33b7e3e9a578e552a09dde132d
 import {
   BrowserRouter as Router,
   Routes,
