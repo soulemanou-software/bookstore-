@@ -1,19 +1,22 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { ThemeProvider } from '@material-tailwind/react';
 import store from './redux/configureStore';
-
-import './index.css';
 import App from './App';
+import 'tw-elements';
+import './index.css';
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root'));
+root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <Router>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </Router>
+    </Provider>
   </React.StrictMode>,
-  document.getElementById('root'),
 );
