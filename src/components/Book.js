@@ -1,14 +1,13 @@
 import { PropTypes } from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { deleteBook } from '../redux/books/books';
+import { removeBook } from '../redux/books/books';
 
 const Book = (props) => {
-  // eslint-disable-next-line camelcase
-  const { item_id, title, author } = props;
+  const { id, title, author } = props;
   const dispatch = useDispatch();
 
   const handleRemoveBook = () => {
-    dispatch(deleteBook(item_id));
+    dispatch(removeBook(id));
   };
 
   return (
@@ -43,7 +42,7 @@ const Book = (props) => {
 };
 
 Book.propTypes = {
-  item_id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
 };

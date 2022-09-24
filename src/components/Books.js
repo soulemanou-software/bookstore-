@@ -13,9 +13,9 @@ const Books = (props) => {
       <main className="books">
         <ul className="books-list">
           {BooksList.map((book) => (
-            <li key={book.item_id}>
+            <li key={book.id}>
               <Book
-                item_id={book.item_id}
+                id={book.id}
                 author={book.author}
                 title={book.title}
               />

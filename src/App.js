@@ -1,20 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Categories from './components/Categories';
-import { fetchBooks } from './redux/books/books';
 import Books from './components/Books';
 
 const App = () => {
   const state = useSelector((state) => state);
-  const dispatch = useDispatch();
-  useEffect(() => async () => {
-    await dispatch(fetchBooks());
-  }, []);
 
   return (
     <div className="App">
